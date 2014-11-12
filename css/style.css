@@ -1,0 +1,19 @@
+/** CyberClap  @author Clark Winkelmann  */
+* { box-sizing: border-box; -moz-box-sizing: border-box; }
+
+body { margin: 0; padding: 0; font-family: "Liberation Sans", Arial, sans-serif; font-size: 60px; cursor: pointer; }
+
+*[contenteditable=true] { cursor: text; }
+
+.clap { position: absolute; top: 50%; left: 50%; width: 10em; height: 9em; margin-top: -4em; margin-left: -5em; padding-top: 1em; color: black; font-size: 0.09em; }
+.clap .lines { position: relative; width: 100%; height: 1.7em; background: linear-gradient(-54deg, white 0, white 11.11111%, black 11.11111%, black 22.22222%, white 22.22222%, white 33.33333%, black 33.33333%, black 44.44444%, white 44.44444%, white 55.55556%, black 55.55556%, black 66.66667%, white 66.66667%, white 77.77778%, black 77.77778%, black 88.88889%, white 88.88889%, white 100%); }
+.clap .top, .clap .bottom { box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.8); }
+.clap .top { width: 100%; height: 2em; background: black; padding-top: 0.3em; transform-origin: bottom right; transform: rotate(0deg); transition: 0.2s transform; }
+.clap.open .top { transform: rotate(12deg); }
+.clap .bottom { width: 100%; height: 6em; background: black; }
+.clap .bottom .lines { background: linear-gradient(54deg, white 0, white 11.11111%, black 11.11111%, black 22.22222%, white 22.22222%, white 33.33333%, black 33.33333%, black 44.44444%, white 44.44444%, white 55.55556%, black 55.55556%, black 66.66667%, white 66.66667%, white 77.77778%, black 77.77778%, black 88.88889%, white 88.88889%, white 100%); }
+.clap .properties { width: 100%; height: 4.3em; }
+.clap .properties .property { display: inline-block; vertical-align: top; width: 2.8em; margin-left: 0.4em; padding-top: 0.4em; }
+.clap .properties .property .title { height: 1em; margin-bottom: 0.4em; background: white; text-align: center; line-height: 0.7em; overflow: hidden; }
+.clap .properties .property .title .text { font-size: 0.6em; text-transform: uppercase; }
+.clap .properties .property .area { height: 2.1em; padding-top: 0.5em; background: white; font-weight: bold; text-align: center; line-height: 1em; overflow: hidden; }

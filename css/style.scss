@@ -1,0 +1,144 @@
+/**
+ * CyberClap
+ *
+ * @author Clark Winkelmann
+ *
+ */
+
+// This scss file must be compiled to style.css
+
+// Customizable properties
+
+$light-color: white;
+$dark-color: black;
+
+$clap-top-margin: 1em;
+$clap-width: 10em;
+$clap-top-height: 2em;
+$clap-bottom-height: 6em;
+$line-height: 1.7em;
+$line-count: 4;
+$line-angle: 54deg;
+$property-title-height: 1em;
+$property-margin: 0.4em;
+$property-count: 3;
+
+// Automatically calculated
+$clap-height: $clap-top-height + $clap-bottom-height;
+$line-space: 100% / ($line-count * 2 +1);
+
+@mixin background-lines($angle) {
+	$linear-content: $light-color 0, $light-color $line-space * 1;
+	
+	@for $i from 1 through $line-count {
+		$linear-content: append($linear-content, $dark-color $line-space * ($i * 2 - 1));
+		$linear-content: append($linear-content, $dark-color $line-space * ($i * 2));
+		$linear-content: append($linear-content, $light-color $line-space * ($i * 2));
+		$linear-content: append($linear-content, $light-color $line-space * ($i * 2 + 1));
+	}
+	
+	background: linear-gradient($angle, $linear-content);
+}
+
+* {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: "Liberation Sans", Arial, sans-serif;
+	font-size: 60px;
+	cursor: pointer;
+}
+
+*[contenteditable=true] {
+	cursor: text;
+}
+
+.clap {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: $clap-width;
+	height: $clap-height + $clap-top-margin;
+	margin-top: $clap-height / -2;
+	margin-left: $clap-width / -2;
+	padding-top: $clap-top-margin;
+	color: $dark-color;
+	font-size: 0.09em;
+	
+	.lines {
+		position: relative;
+		width: 100%;
+		height: $line-height;
+		
+		@include background-lines($line-angle * -1);
+	}
+	
+	.top, .bottom {
+		box-shadow: 0 0 0.5em rgba(0,0,0,0.8);
+	}
+	
+	.top {
+		width: 100%;
+		height: $clap-top-height;
+		background: $dark-color;
+		padding-top: $clap-top-height - $line-height;
+		transform-origin: bottom right;
+		transform: rotate(0deg);
+		transition: 0.2s transform;
+	}
+	
+	&.open .top {
+		transform: rotate(12deg);
+	}
+	
+	.bottom {
+		width: 100%;
+		height: $clap-bottom-height;
+		background: $dark-color;
+		
+		.lines {
+			@include background-lines($line-angle);
+		}
+	}
+	
+	.properties {
+		width: 100%;
+		height: $clap-bottom-height - $line-height;
+		
+		.property {
+			display: inline-block;
+			vertical-align: top;
+			width: ($clap-width - $property-margin * ($property-count + 1)) / $property-count;
+			margin-left: $property-margin;
+			padding-top: $property-margin;
+			
+			.title {
+				height: $property-title-height;
+				margin-bottom: $property-margin;
+				background: $light-color;
+				text-align: center;
+				line-height: 0.7em;
+				overflow: hidden;
+				
+				.text {
+					font-size: 0.6em;
+					text-transform: uppercase;
+				}
+			}
+			
+			.area {
+				height: $clap-bottom-height - $line-height - $property-title-height - $property-margin * 3;
+				padding-top: 0.5em;
+				background: $light-color;
+				font-weight: bold;
+				text-align: center;
+				line-height: 1em;
+				overflow: hidden;
+			}
+		}
+	}
+}
