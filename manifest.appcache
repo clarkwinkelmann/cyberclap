@@ -1,0 +1,12 @@
+CACHE MANIFEST
+# version 2014-11-22 23:30
+
+CACHE:
+index.html
+clap.mp3
+css/style.css
+js/jquery-2.1.1.min.js
+js/script.js
+
+NETWORK:
+*
